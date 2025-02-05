@@ -1,5 +1,7 @@
 # Ntfy MQ 
 
+![Ntfy MQ](./assets/Ntfy%20MQ.png)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.8+-green.svg)](https://fastapi.tiangolo.com)
