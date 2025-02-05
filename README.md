@@ -81,9 +81,18 @@ poetry run fastapi dev notification_service/main.py
 {
     "title": "string",
     "message": "string",
-    "priority": 1  // 1 for high priority, 2 for low priority
+    "priority": 1  // Priority level from 1-5
 }
 ```
+
+#### Priority Levels
+| Priority Level | Value | Description | Behavior |
+|---------------|-------|-------------|-----------|
+| Max/Urgent | 5 | Highest priority notifications | Really long vibration bursts, default notification sound with pop-over |
+| High | 4 | Important notifications | Long vibration burst, default notification sound with pop-over |
+| Default | 3 | Standard notifications | Short default vibration and sound, default notification behavior |
+| Low | 2 | Non-urgent notifications | No vibration or sound, only visible when notification drawer is pulled down |
+| Min | 1 | Minimal priority | No vibration or sound, shown under "Other notifications" |
 
 ### Check Task Status
 - **GET** `/api/v1/tasks/{task_id}`
