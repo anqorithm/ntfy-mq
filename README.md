@@ -6,7 +6,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)](https://www.docker.com/)
 
-Simple notification service that uses ntfy.sh to send notifications through RabbitMQ and Celery.
+Simple notification microservice that uses ntfy.sh to send notifications through RabbitMQ and Celery.
 
 ## Tech Stack
 
@@ -113,6 +113,7 @@ poetry run fastapi dev notification_service/main.py
     "title": "string",
     "message": "string",
     "priority": 1  // Priority level from 1-5
+    "topic": "string" // Topic to send the notification to
 }
 ```
 
