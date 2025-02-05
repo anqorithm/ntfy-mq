@@ -3,7 +3,6 @@ from .schemas import (
     NotificationRequest,
     NotificationResponse,
     TaskStatusResponse,
-    SuccessResponse,
 )
 from ..tasks.worker import celery_app, send_notification
 
@@ -17,6 +16,7 @@ async def create_notification(notification: NotificationRequest):
             title=notification.title,
             message=notification.message,
             priority=notification.priority,
+            topic=notification.topic,
         )
         return NotificationResponse(
             message="Notification queued successfully",

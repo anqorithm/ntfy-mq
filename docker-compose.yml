@@ -1,6 +1,21 @@
 services:
-  api:
-    build: .
+  api_development:
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+    env_file:
+      - .env
+
+  api_production:
+    build:
+      context: .
+      dockerfile: prod.dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -23,7 +38,7 @@ services:
 
   celery_worker:
     build: .
-    command: poetry run celery -A app.worker worker --loglevel=info --concurrency=4
+    command: poetry run celery -A notification_service.tasks.worker worker --loglevel=info --concurrency=4
     volumes:
       - .:/app
     depends_on:

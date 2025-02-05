@@ -8,6 +8,7 @@ class NotificationRequest(BaseModel):
     title: str
     message: str
     priority: int = Field(default=3, ge=1, le=5, description="Priority level (1-5)")
+    topic: str = Field(..., description="ntfy.sh topic to send the notification to")
 
     model_config = ConfigDict(
         json_schema_extra={
@@ -15,6 +16,7 @@ class NotificationRequest(BaseModel):
                 "title": "Test Notification",
                 "message": "This is a test notification",
                 "priority": 3,
+                "topic": "test",
             }
         }
     )

@@ -18,10 +18,10 @@ celery_app.conf.update(
 
 
 @celery_app.task(bind=True, max_retries=3)
-def send_notification(self, title: str, message: str, priority: int = 3):
+def send_notification(self, title: str, message: str, topic: str, priority: int = 3):
     try:
         response = requests.post(
-            settings.NTFY_BASE_URL,
+            f"{settings.NTFY_BASE_URL}/{topic}",
             data=message.encode(encoding="utf-8"),
             headers={
                 "Title": title,

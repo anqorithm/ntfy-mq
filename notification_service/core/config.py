@@ -8,11 +8,13 @@ class Settings(BaseSettings):
     # Ntfy
     NTFY_TOPIC: str
     NTFY_ACCESS_TOKEN: str
-    NTFY_BASE_URL: str
+    NTFY_BASE_URL: str = "https://ntfy.sh"
 
     # Service Info
-    SERVICE_NAME: str = "Notification Service"
-    SERVICE_DESCRIPTION: str = "Modern async notification service using ntfy.sh"
+    SERVICE_NAME: str = "Ntfy MQ Service"
+    SERVICE_DESCRIPTION: str = (
+        "Ntfy MQ is a modern async notification service using ntfy.sh through RabbitMQ and Celery"
+    )
     VERSION: str = "1.0.0"
     ENVIRONMENT: str = "development"
 

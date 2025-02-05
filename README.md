@@ -130,8 +130,8 @@ poetry run fastapi dev notification_service/main.py
 - Example response:
 ```json
 {
-    "service": "Notification Service",
-    "description": "Modern async notification service using ntfy.sh",
+    "service": "Ntfy MQ Service",
+    "description": "Ntfy MQ is a modern async notification service using ntfy.sh through RabbitMQ and Celery",
     "status": "healthy",
     "version": "1.0.0",
     "timestamp": "2025-02-05T09:30:23.962722Z",
