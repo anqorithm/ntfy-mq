@@ -1,6 +1,6 @@
+import requests
 from celery import Celery
 from ..core.config import settings
-from ..services.notifications import NotificationService
 from ..models import NotificationResponse
 
 celery_app = Celery(
@@ -9,7 +9,6 @@ celery_app = Celery(
     backend="rpc://",
 )
 
-# Celery Configuration
 celery_app.conf.update(
     task_ignore_result=False,
     task_serializer="json",
@@ -18,17 +17,23 @@ celery_app.conf.update(
 )
 
 
-@celery_app.task(
-    bind=True,
-    max_retries=3,
-)
+@celery_app.task(bind=True, max_retries=3)
 def send_notification(self, title: str, message: str, priority: int = 3):
     try:
-        NotificationService.send_notification(title, message, priority)
+        response = requests.post(
+            settings.NTFY_BASE_URL,
+            data=message.encode(encoding="utf-8"),
+            headers={
+                "Title": title,
+                "Priority": str(priority),
+                "Authorization": f"Bearer {settings.NTFY_ACCESS_TOKEN}",
+            },
+        )
+        response.raise_for_status()
         response = NotificationResponse(
             status="success", message="Notification sent successfully"
         )
         return response.model_dump()
-    except Exception as e:
+    except requests.RequestException as e:
         retry_in = 2**self.request.retries
         raise self.retry(exc=e, countdown=retry_in)
