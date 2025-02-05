@@ -68,9 +68,14 @@ git clone https://github.com/anqol/ntfy-mq.git
 cd ntfy-mq
 ```
 
-2. Build and run with Docker Compose:
+2. Build and run with Docker Compose (development):
 ```bash
-docker-compose up --build
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+3. Build and run with Docker Compose (production):
+```bash
+docker-compose -f docker-compose.prod.yml up --build
 ```
 
 ### Local Development
@@ -138,7 +143,6 @@ poetry run fastapi dev notification_service/main.py
     "environment": "development"
 }
 ```
-
 ### Root Endpoint
 - **GET** `/`
 - Returns service information and available endpoints
@@ -184,3 +188,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [RabbitMQ](https://www.rabbitmq.com)
 - [Celery](https://docs.celeryq.dev)
 - [FastAPI](https://fastapi.tiangolo.com)
+
