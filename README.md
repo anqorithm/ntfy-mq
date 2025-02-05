@@ -151,3 +151,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## References
+
+- [ntfy.sh](https://ntfy.sh)
+- [RabbitMQ](https://www.rabbitmq.com)
+- [Celery](https://docs.celeryq.dev)
+- [FastAPI](https://fastapi.tiangolo.com)
