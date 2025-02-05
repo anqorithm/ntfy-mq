@@ -45,8 +45,3 @@ async def get_task_status(task_id: str):
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/health")
-async def health_check():
-    return SuccessResponse(message="Service is healthy")

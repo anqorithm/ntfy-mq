@@ -81,7 +81,7 @@ poetry run fastapi dev notification_service/main.py
 {
     "title": "string",
     "message": "string",
-    "priority": "low|normal|high"
+    "priority": 1  // 1 for high priority, 2 for low priority
 }
 ```
 
@@ -90,44 +90,38 @@ poetry run fastapi dev notification_service/main.py
 - Returns the status of a notification task
 
 ### Health Check
-- **GET** `/api/v1/health`
-- Returns detailed service health status including:
-  - Service name and version
-  - System uptime and memory usage
-  - Response time metrics
-  - Environment details
-  - Dependencies status
-  - API documentation links
-Example response:
+- **GET** `/health`
+- Returns service health status
+- Example response:
 ```json
 {
-    "service": "Ntfy MQ",
-    "description": "Notification service using ntfy.sh, RabbitMQ, and Celery",
-    "version": "1.0.0",
+    "service": "Notification Service",
+    "description": "Modern async notification service using ntfy.sh",
     "status": "healthy",
-    "timestamp": "2024-01-20T12:34:56.789Z",
-    "uptime": "2d 3h 45m",
-    "memory_usage": {
-        "total": "1.2GB",
-        "used": "756MB",
-        "free": "444MB"
+    "version": "1.0.0",
+    "timestamp": "2025-02-05T09:30:23.962722Z",
+    "environment": "development"
+}
+```
+
+### Root Endpoint
+- **GET** `/`
+- Returns service information and available endpoints
+- Example response:
+```json
+{
+    "name": "Notification Service",
+    "description": "Modern async notification service using ntfy.sh",
+    "version": "1.0.0",
+    "endpoints": {
+        "root": "/",
+        "health": "/health", 
+        "docs": "/docs",
+        "redoc": "/redoc",
+        "openapi": "/openapi.json",
+        "api_v1": "/api/v1"
     },
-    "response_time": "42ms",
-    "environment": "production",
-    "dependencies": {
-        "rabbitmq": "healthy",
-        "celery": "healthy",
-        "ntfy": "healthy"
-    },
-    "host": {
-        "ip": "192.168.1.100",
-        "hostname": "ntfy-mq-server"
-    },
-    "documentation": {
-        "swagger": "http://localhost:8000/docs",
-        "redoc": "http://localhost:8000/redoc",
-        "github": "https://github.com/anqorithm/ntfy-mq"
-    }
+    "timestamp": "2025-02-05T09:30:33.522773Z"
 }
 ```
 
@@ -148,4 +142,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+
+# Notification Service API Documentation
+
+This service provides endpoints for sending and managing notifications.
+
+## Base URL

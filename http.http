@@ -12,7 +12,7 @@ Content-Type: application/json
 GET http://localhost:8000/api/v1/tasks/039296e9-d6c5-4f34-a039-ff9902ac7c3f
 
 ### Health Check
-GET http://localhost:8000/api/v1/health
+GET http://localhost:8000/health
 
 ### Root Health Check
 GET http://localhost:8000/
