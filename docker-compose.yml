@@ -23,7 +23,7 @@ services:
 
   celery_worker:
     build: .
-    command: celery -A notification_service worker --loglevel=info
+    command: poetry run celery -A app.worker worker --loglevel=info --concurrency=4
     volumes:
       - .:/app
     depends_on:

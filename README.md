@@ -18,6 +18,32 @@ Simple notification service that uses ntfy.sh to send notifications through Rabb
 - **ntfy.sh**: Push notification service
 - **Docker**: Containerization
 
+## Architecture
+
+```mermaid
+graph LR
+    Client([Client]) --> API[FastAPI Service]
+    API --> RMQ[(RabbitMQ)]
+    RMQ --> W1[Worker 1]
+    RMQ --> W2[Worker 2]
+    RMQ --> W3[Worker 3]
+    RMQ --> W4[Worker 4]
+    W1 --> N[ntfy.sh]
+    W2 --> N
+    W3 --> N
+    W4 --> N
+    N --> D[Device]
+    
+    style API fill:#87CEEB
+    style RMQ fill:#FF8C00
+    style W1 fill:#90EE90
+    style W2 fill:#90EE90
+    style W3 fill:#90EE90
+    style W4 fill:#90EE90
+    style N fill:#FFB6C1
+    style D fill:#DDA0DD
+```
+
 ## Features
 
 - Asynchronous notification processing
@@ -63,7 +89,7 @@ cp .env.example .env
 3. Start RabbitMQ server
 4. Start Celery worker:
 ```bash
-poetry run celery -A app.worker worker --loglevel=info
+poetry run celery -A app.worker worker --loglevel=info --concurrency=4
 ```
 
 5. Start FastAPI server:
