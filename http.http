@@ -1,0 +1,38 @@
+### Send Notification
+POST http://localhost:8000/api/v1/notify
+Content-Type: application/json
+
+{
+    "title": "Test Notification",
+    "message": "This is a test notification",
+    "priority": 1
+}
+
+### Check Task Status (replace with actual task_id)
+GET http://localhost:8000/api/v1/tasks/039296e9-d6c5-4f34-a039-ff9902ac7c3f
+
+### Health Check
+GET http://localhost:8000/api/v1/health
+
+### Root Health Check
+GET http://localhost:8000/
+
+### Send High Priority Notification
+POST http://localhost:8000/api/v1/notify
+Content-Type: application/json
+
+{
+    "title": "Urgent Notification",
+    "message": "This is a high priority notification",
+    "priority": 1
+}
+
+### Send Low Priority Notification
+POST http://localhost:8000/api/v1/notify
+Content-Type: application/json
+
+{
+    "title": "Low Priority Update",
+    "message": "This is a low priority notification",
+    "priority": 2
+} 
