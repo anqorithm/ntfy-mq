@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: prod.dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+    env_file:
+      - .env
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: always
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: prod.dockerfile
+    command: poetry run celery -A notification_service.tasks.worker worker --loglevel=info --concurrency=4
+    depends_on:
+      - rabbitmq
+    env_file:
+      - .env
+    restart: always 
