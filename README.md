@@ -142,9 +142,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-# Notification Service API Documentation
-
-This service provides endpoints for sending and managing notifications.
-
-## Base URL
