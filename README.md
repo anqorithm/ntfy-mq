@@ -34,14 +34,14 @@ graph LR
     W4 --> N
     N --> D[Device]
     
-    style API fill:#87CEEB
-    style RMQ fill:#FF8C00
-    style W1 fill:#90EE90
-    style W2 fill:#90EE90
-    style W3 fill:#90EE90
-    style W4 fill:#90EE90
-    style N fill:#FFB6C1
-    style D fill:#DDA0DD
+    style API fill:#2E86C1
+    style RMQ fill:#D35400
+    style W1 fill:#27AE60
+    style W2 fill:#27AE60
+    style W3 fill:#27AE60
+    style W4 fill:#27AE60
+    style N fill:#C0392B
+    style D fill:#8E44AD
 ```
 
 ## Features
