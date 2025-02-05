@@ -2,7 +2,7 @@
 POST http://localhost:8000/api/v1/notify
 Content-Type: application/json
 
-{
+{   
     "title": "Test Notification",
     "message": "This is a test notification",
     "priority": 5

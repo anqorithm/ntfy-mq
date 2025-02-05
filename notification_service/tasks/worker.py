@@ -25,9 +25,10 @@ celery_app.conf.update(
 def send_notification(self, title: str, message: str, priority: int = 3):
     try:
         NotificationService.send_notification(title, message, priority)
-        return NotificationResponse(
+        response = NotificationResponse(
             status="success", message="Notification sent successfully"
         )
+        return response.model_dump()
     except Exception as e:
         retry_in = 2**self.request.retries
         raise self.retry(exc=e, countdown=retry_in)
