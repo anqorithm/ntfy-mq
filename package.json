@@ -1,0 +1,15 @@
+{
+    "name": "ntfy-mq",
+    "version": "0.0.0-development",
+    "description": "NTFY Message Queue Client",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anqorithm/ntfy-mq.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/anqorithm/ntfy-mq/issues"
+    },
+    "homepage": "https://github.com/anqorithm/ntfy-mq#readme"
+}
