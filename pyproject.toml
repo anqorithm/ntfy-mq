@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "notification-service"
-version = "0.1.0"
-description = "Asynchronous Notification System with RabbitMQ & Celery"
-authors = ["Your Name <your.email@example.com>"]
+version = "1.5.0"
+description = "Simple notification microservice that uses ntfy.sh to send notifications through RabbitMQ and Celery."
+authors = ["Abdullah Alqahtani <anqorithm@protonmail.com>"]
 packages = [
     { include = "notification_service" }
 ]
