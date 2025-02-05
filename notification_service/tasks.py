@@ -1,8 +1,8 @@
 import requests
 from celery import Celery
 from .core.config import settings
+from .models import NotificationResponse
 
-# Initialize Celery
 celery_app = Celery(
     "notification_service",
     broker=settings.CELERY_BROKER_URL,
@@ -30,7 +30,9 @@ def send_notification(self, title: str, message: str, priority: int = 3):
             },
         )
         response.raise_for_status()
-        return {"status": "success", "message": "Notification sent successfully"}
+        return NotificationResponse(
+            status="success", message="Notification sent successfully"
+        )
     except requests.RequestException as e:
         retry_in = 2**self.request.retries
         raise self.retry(exc=e, countdown=retry_in)

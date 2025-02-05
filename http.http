@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "title": "Test Notification",
     "message": "This is a test notification",
-    "priority": 1
+    "priority": 5
 }
 
 ### Check Task Status (replace with actual task_id)
