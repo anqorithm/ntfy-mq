@@ -24,17 +24,79 @@ Simple notification microservice that uses ntfy.sh to send notifications through
 
 ```mermaid
 graph LR
-    Client([Client]) --> API[FastAPI Service]
-    API --> RMQ[(RabbitMQ)]
-    RMQ --> W1[Worker 1]
-    RMQ --> W2[Worker 2]
-    RMQ --> W3[Worker 3]
-    RMQ --> W4[Worker 4]
-    W1 --> N[ntfy.sh]
-    W2 --> N
-    W3 --> N
-    W4 --> N
-    N --> D[Device]
+    %% Client Applications
+    Client([fa:fa-laptop Client])
+    style Client fill:#f9f9f9,stroke:#333,stroke-width:2px
+    
+    %% FastAPI Service
+    subgraph API_Gateway["API Gateway Layer"]
+        API[fa:fa-bolt FastAPI Service<br/>POST /notifications]
+        VAL{fa:fa-check-circle Input Validation}
+        AUTH{fa:fa-key Authentication}
+        API --> VAL
+        VAL --> AUTH
+    end
+    style API_Gateway fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    
+    %% Message Queue
+    subgraph Message_Queue["Message Queue Layer"]
+        RMQ[(fa:fa-server RabbitMQ<br/>notification.queue)]
+        QOS[fa:fa-tachometer Quality of Service<br/>prefetch_count=1]
+        RTY[fa:fa-refresh Auto Retry<br/>max_retries=3]
+        RMQ --> QOS
+        QOS --> RTY
+    end
+    style Message_Queue fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    
+    %% Workers
+    subgraph Workers["Worker Pool"]
+        W1[fa:fa-cogs Celery Worker 1<br/>notification_handler]
+        W2[fa:fa-cogs Celery Worker 2<br/>notification_handler]
+        W3[fa:fa-cogs Celery Worker 3<br/>notification_handler]
+        W4[fa:fa-cogs Celery Worker 4<br/>notification_handler]
+    end
+    style Workers fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    
+    %% Notification Service
+    subgraph Notification["Notification Service"]
+        N[fa:fa-bell ntfy.sh Service<br/>topic: your_topic]
+        NR{fa:fa-dashboard Rate Limiting}
+        NQ[fa:fa-list Queue Management]
+        N --> NR
+        NR --> NQ
+    end
+    style Notification fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    
+    %% End Devices
+    subgraph Devices["End Devices"]
+        D1[fa:fa-android Android Device<br/>FCM]
+        D2[fa:fa-apple iOS Device<br/>APNs]
+        D3[fa:fa-chrome Web Browser<br/>WebPush]
+        D4[fa:fa-desktop Desktop App<br/>Native]
+    end
+    style Devices fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    
+    %% Connections
+    Client --> API
+    AUTH --> RMQ
+    RTY --> Workers
+    W1 & W2 & W3 & W4 --> N
+    NQ --> D1 & D2 & D3 & D4
+    
+    %% Styling for specific nodes
+    style API fill:#2196f3,color:#fff
+    style RMQ fill:#9c27b0,color:#fff
+    style N fill:#ff9800,color:#fff
+    style W1 fill:#4caf50,color:#fff
+    style W2 fill:#4caf50,color:#fff
+    style W3 fill:#4caf50,color:#fff
+    style W4 fill:#4caf50,color:#fff
+
+    %% Click actions
+    click API "https://fastapi.tiangolo.com/" "Visit FastAPI Documentation"
+    click RMQ "https://www.rabbitmq.com/" "Visit RabbitMQ Documentation"
+    click W1 "https://docs.celeryq.dev/" "Visit Celery Documentation"
+    click N "https://ntfy.sh/" "Visit ntfy.sh Documentation"
 ```
 
 ## Features
