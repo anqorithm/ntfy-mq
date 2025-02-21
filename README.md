@@ -6,7 +6,21 @@
 [![Python](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.8+-green.svg)](https://fastapi.tiangolo.com)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-%23FF6600.svg?logo=rabbitmq&logoColor=white)](https://www.rabbitmq.com/)
+[![Celery](https://img.shields.io/badge/Celery-%2337814A.svg?logo=celery&logoColor=white)](https://docs.celeryq.dev/)
+[![Poetry](https://img.shields.io/badge/Poetry-%23299BD7.svg?logo=poetry&logoColor=white)](https://python-poetry.org/)
+[![ntfy.sh](https://img.shields.io/badge/ntfy.sh-%23009900.svg?logo=ntfy&logoColor=white)](https://ntfy.sh/)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)](https://www.docker.com/)
+![GitHub Actions](https://img.shields.io/github/actions/workflow/status/anqorithm/ntfy-mq/release.yml?logo=githubactions&logoColor=white)
+![GitHub stars](https://img.shields.io/github/stars/anqorithm/ntfy-mq?style=social)
+![GitHub forks](https://img.shields.io/github/forks/anqorithm/ntfy-mq?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/anqorithm/ntfy-mq?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/anqorithm/ntfy-mq)
+![GitHub issues](https://img.shields.io/github/issues/anqorithm/ntfy-mq)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/anqorithm/ntfy-mq)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/anqorithm/ntfy-mq)
+![GitHub contributors](https://img.shields.io/github/contributors/anqorithm/ntfy-mq)
+
 
 Simple notification microservice that uses ntfy.sh to send notifications through RabbitMQ and Celery.
 
