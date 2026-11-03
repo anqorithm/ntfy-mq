@@ -6,7 +6,8 @@ WORKDIR /app
 RUN pip install --no-cache-dir poetry
 
 # Copy project files
-COPY pyproject.toml poetry.lock ./
+# poetry.lock is gitignored, so copy it only when present
+COPY pyproject.toml poetry.lock* ./
 
 # Install dependencies
 RUN poetry config virtualenvs.create false \
